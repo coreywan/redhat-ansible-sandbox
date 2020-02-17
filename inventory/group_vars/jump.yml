@@ -1,4 +1,7 @@
 ---
+# Bind Configurations
+configs: templates
+firewalld: false
 zones:
   example.com:
     file: "example.com.zone"
@@ -7,4 +10,3 @@ zones:
     zone_retry: '7200'
     zone_expire: '3600000'
     zone_minimum: '3600'
-configs: templates
