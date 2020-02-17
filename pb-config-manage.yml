@@ -1,5 +1,5 @@
 ---
-- hosts: jumphost
+- hosts: linux
   become: true
   roles:
     - config-linux-base
