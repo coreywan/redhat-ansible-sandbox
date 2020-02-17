@@ -1,6 +1,5 @@
 ---
 - hosts: jumphost
-  connection: local
   become: true
   roles:
     - config-linux-base
