@@ -1,4 +1,9 @@
 ---
+- hosts: jump
+  become: true
+  roles:
+    - tenhishadow.manage_bind
+
 - hosts: linux
   become: true
   roles:
