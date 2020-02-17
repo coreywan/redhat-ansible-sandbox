@@ -1,0 +1,3 @@
+- name: Shutdown Hosts
+  command: /sbin/shutdown -h now
+  ignore_unreachable: true

@@ -1,0 +1,18 @@
+[jump]
+jumphost ansible_host=192.168.1.10
+
+[apps]
+app1 ansible_host=192.168.1.12
+app2 ansible_host=192.168.1.13
+
+[frontend]
+frontend1 ansible_host=192.168.1.11
+
+[db]
+appdb1 ansible_host=192.168.1.14
+
+[linux:children]
+jump
+apps
+db
+frontend
