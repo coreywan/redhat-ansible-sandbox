@@ -1,3 +1,6 @@
+$ORIGIN example.com. 
+$TTL 86400 
+
 jumphost                 60 A     192.168.1.10
 frontend1                60 A     192.168.1.11
 app1                     60 A     192.168.1.12
