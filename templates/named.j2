@@ -9,15 +9,15 @@ options {
  pid-file                       "/run/named/named.pid";
  session-keyfile                "/run/named/session.key";
  allow-query                    { any; };
- recursion                      no;
- version                        "AIX 5.1.0";
+ recursion                      yes;
  auth-nxdomain                  no;
  dnssec-enable                  yes;
- dnssec-validation              auto;
+ dnssec-validation              no;
  bindkeys-file                  "/etc/named.iscdlv.key";
  managed-keys-directory         "/var/named/dynamic";
  transfers-out                  100;
- forwarders                     { 8.8.8.8; };
+ forward                        first;
+ forwarders                     { 10.255.0.1; };
 };
 
 logging {
