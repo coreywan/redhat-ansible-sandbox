@@ -7,7 +7,9 @@ From root run:
 ```sh
 subscription-manager register --activationkey={{activation_key}} --org={{org_id}}
 subscription-manager repos --enable=rhel-7-server-ansible-2.9-source-rpms
-yum install git python3 python3-pip
+subscription-manager repos --enable=rhel-7-server-optional-rpms
+subscription-manager repos --enable=rhel-7-server-extras-rpms
+yum install sshpass git python3 python3-pip
 pip3 install ansible
 ```
 
