@@ -28,7 +28,7 @@ logging {
 };
 
 # START ZONES
-{% for key, value in zones.iteritems() %}
+{% for key, value in zones.items() %}
 zone "{{ key }}" {
  type           master;
  file           "/var/named/data/{{ value.file }}";
