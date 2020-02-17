@@ -1,6 +1,12 @@
 $ORIGIN example.com. 
-$TTL 86400 
-
+@	SOA	jumphost.example.com.	hostmaster.example.com. (
+		2001062501 ; serial
+		21600      ; refresh after 6 hours
+		3600       ; retry after 1 hour
+		604800     ; expire after 1 week
+		86400 )    ; minimum TTL of 1 day
+;
+	                        NS	  jumphost.example.com.
 jumphost                 60 A     192.168.1.10
 frontend1                60 A     192.168.1.11
 app1                     60 A     192.168.1.12
