@@ -17,6 +17,7 @@ options {
  bindkeys-file                  "/etc/named.iscdlv.key";
  managed-keys-directory         "/var/named/dynamic";
  transfers-out                  100;
+ forwarders                     { 8.8.8.8; };
 };
 
 logging {
