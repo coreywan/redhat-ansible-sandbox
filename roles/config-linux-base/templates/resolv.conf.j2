@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+{% for search in nameserver_searches %}
+search {{ search }}
+{% endfor %}
+
+{% for ns in nameservers %}
+nameserver {{ ns }}
+{% endfor %}
