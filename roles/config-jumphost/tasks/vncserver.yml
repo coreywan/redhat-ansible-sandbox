@@ -1,0 +1,47 @@
+- name: Install TigerVNC
+  package:
+    name: tigervnc-server
+    state: present
+
+- name: Setup vncserver config file
+  template:
+    src: vncserver.service.j2
+    dest: "/etc/systemd/system/vncserver@.service"
+  notify: restart vnc
+    
+- name: Check if VNC password is already set
+  stat:
+    path: "/home/{{ vnc_user }}/.vnc/passwd"
+  register: vnc_passwd_file
+
+- name: Create .vnc directory
+  file:
+    group: "{{ vnc_user }}"
+    mode: 0755
+    owner: "{{ vnc_user }}"
+    path: /home/{{ vnc_user }}/.vnc
+    state: directory
+  when: not vnc_passwd_file.stat.exists
+
+- name: Set default VNC password
+  shell: |
+    set -o pipefail
+    echo {{ vnc_password }} | vncpasswd -f > /home/{{ vnc_user }}/.vnc/passwd
+  args:
+    creates: "/home/{{ vnc_user }}/.vnc/passwd"
+  when: not vnc_passwd_file.stat.exists
+
+- name: Set correct permissions for VNC passwd file
+  file:
+    group: "{{ user }}"
+    mode: 0600
+    owner: "{{ user }}"
+    path: /home/{{ user }}/.vnc/passwd
+  when: not vnc_passwd_file.stat.exists
+
+- name: Start and enable VNC service
+  systemd:
+    daemon_reload: true
+    enabled: true
+    name: vncserver-{{ vnc_user }}@{{ vnc_display }}
+    state: started

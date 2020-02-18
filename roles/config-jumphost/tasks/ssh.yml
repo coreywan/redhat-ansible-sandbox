@@ -1,0 +1,6 @@
+---
+- name: Configure SSH Config
+  template:
+    src: ssh-config.j2
+    dest: /home/student/.ssh/ssh-config
+    mode: "0400"
