@@ -4,3 +4,10 @@
     src: ssh-config.j2
     dest: /home/student/.ssh/ssh-config
     mode: "0400"
+
+- name: Configure ssh keypair
+  openssh_keypair:
+    path: /home/student/.ssh/id_rsa
+    mode: "0400"
+    owner: student
+    group: student
