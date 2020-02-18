@@ -33,10 +33,10 @@
 
 - name: Set correct permissions for VNC passwd file
   file:
-    group: "{{ user }}"
+    group: "{{ vnc_user }}"
     mode: 0600
-    owner: "{{ user }}"
-    path: /home/{{ user }}/.vnc/passwd
+    owner: "{{ vnc_user }}"
+    path: /home/{{ vnc_user }}/.vnc/passwd
   when: not vnc_passwd_file.stat.exists
 
 - name: Start and enable VNC service
