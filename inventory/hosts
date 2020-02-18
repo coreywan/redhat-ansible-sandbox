@@ -11,6 +11,9 @@ frontend1 ansible_host=192.168.1.11
 [db]
 appdb1 ansible_host=192.168.1.14
 
+[linux]
+tower ansible_host=192.168.1.20
+
 [linux:children]
 jump
 apps
