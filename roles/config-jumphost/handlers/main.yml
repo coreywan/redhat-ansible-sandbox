@@ -2,3 +2,4 @@
 - name: restart vnc
   shell: |
     systemctl restart vncserver-{{ vnc_user }}@{{ vnc_display }}
+  ignore_errors: true
