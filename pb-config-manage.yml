@@ -2,6 +2,7 @@
 - hosts: jump
   become: true
   roles:
+    - config-jumphost
     - tenhishadow.manage_bind
 
 - hosts: linux
