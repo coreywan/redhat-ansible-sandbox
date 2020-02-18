@@ -46,9 +46,7 @@
     path: /home/{{ vnc_user }}/.vnc/passwd
   when: not vnc_passwd_file.stat.exists
 
-- name: Start and enable VNC service
-  systemd:
-    daemon_reload: true
-    enabled: true
-    name: vncserver-{{ vnc_user }}@{{ vnc_display }}
-    state: started
+- name: Enable VNC Service
+  shell: |
+    systemctl enable vncserver-{{ vnc_user }}@{{ vnc_display }}
+  ignore_errors: true
