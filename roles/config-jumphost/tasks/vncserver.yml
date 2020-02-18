@@ -9,6 +9,10 @@
     dest: "/etc/systemd/system/vncserver@.service"
   notify: restart vnc
     
+- name: Force systemd to reread configs
+  systemd:
+    daemon_reload: true
+
 - name: Check if VNC password is already set
   stat:
     path: "/home/{{ vnc_user }}/.vnc/passwd"
