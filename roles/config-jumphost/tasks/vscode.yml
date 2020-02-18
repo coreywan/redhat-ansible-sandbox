@@ -12,3 +12,8 @@
   package:
     name: code
     state: present
+
+- name: Copy Desktop Shortcut
+  copy:
+    src: /usr/share/applications/code.desktop
+    dest: /home/student/Desktop/code.desktop
