@@ -1,42 +1,7 @@
 ---
-- name: Update Supscriptions Services
-  redhat_subscription:
-    state: present
-    activationkey: "{{ rhel_subscription_key }}"
-    org_id: "{{ rhel_subscription_org_id }}"
+- include_tasks: packages.yml
 
-- name: Add Open VMWare Tools Repo
-  yum_repository:
-    name: VMware Tools
-    description: EPEL YUM repo
-    baseurl: http://packages.vmware.com/packages/rhel7/x86_64/
-
-- name: Ensure Repos
-  rhsm_repository:
-    name:
-      - rhel-server-rhscl-7-rpms
-      - rhel-7-server-optional-rpms
-      - rhel-7-server-extras-rpms
-
-- name: Install Open VM Tools
-  yum:
-    name: open-vm-tools
-    state: present
-
-- include_tasks: patch.yml
-
-- name: Disable FirewallD
-  service:
-    state: stopped
-    enabled: false
-    name: firewalld
-
-- name: Install pip
-  yum:
-    state: present
-    name: 
-      - python3-pip
-      - python27-python-pip
+- include_tasks: user.yml
 
 - name: Configure DNS
   template:
@@ -47,8 +12,4 @@
   selinux:
     state: disabled
 
-- name: Set authorized Key from jumphost
-  authorized_key:
-    user: student
-    state: present
-    key: "{{ lookup('file', '/home/student/.ssh/id_rsa.pub') }}"
+- include_tasks: patch.yml
