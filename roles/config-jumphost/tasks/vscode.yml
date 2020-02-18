@@ -1,7 +1,8 @@
 ---
 - name: Setup vscode yum repository
   yum_repository:
-    name: Visual Studio Code
+    name: code
+    description: Visual Studio Code
     baseurl: https://packages.microsoft.com/yumrepos/vscode
     enabled: true
     gpgcheck: true
