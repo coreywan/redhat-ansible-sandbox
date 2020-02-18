@@ -35,6 +35,8 @@
   args:
     creates: "/home/{{ vnc_user }}/.vnc/passwd"
   when: not vnc_passwd_file.stat.exists
+  become: true
+  become_user: "{{ vnc_user }}"
 
 - name: Set correct permissions for VNC passwd file
   file:
