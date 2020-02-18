@@ -17,3 +17,5 @@
   copy:
     src: /usr/share/applications/code.desktop
     dest: /home/student/Desktop/code.desktop
+    owner: student
+    mode: "0700"
