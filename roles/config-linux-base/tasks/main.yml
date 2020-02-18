@@ -46,3 +46,9 @@
 - name: Disable selinux
   selinux:
     state: disabled
+
+- name: Set authorized Key from jumphost
+  authorized_key:
+    user: student
+    state: present
+    key: "{{ lookup('file', '/home/student/.ssh/id_rsa.pub') }}"
