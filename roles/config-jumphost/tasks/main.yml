@@ -1,3 +1,7 @@
 ---
+- name: Disable selinux
+  selinux:
+    state: disabled
+
 - include_tasks: ssh.yml
 - include_tasks: vncserver.yml
