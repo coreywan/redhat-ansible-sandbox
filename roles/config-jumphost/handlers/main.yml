@@ -2,7 +2,7 @@
 - name: restart vnc
   systemd:
     daemon_reload: true
-    name: "vncserver-{{ vnc_user }}@{{ vnc_display }}"
+    name: "vncserver-{{ vnc_user }}@{{ vnc_display }}.service"
     state: restarted
   become: true
   when: notest is not defined
