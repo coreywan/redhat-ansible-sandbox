@@ -1,0 +1,7 @@
+---
+- hosts: linux:!jump
+  gather_facts: false
+  tasks:
+    - include_role:
+        name: config-linux-base
+        tasks_from: shutdown
