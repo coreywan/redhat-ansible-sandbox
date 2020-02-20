@@ -1,0 +1,14 @@
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Check to make sure the VNC port is running on the right port.
+      wait_for:
+        port: 5901
+        state: started
+        timeout: 10
+
+- hosts: linux
+  gather_facts: false
+  tasks:
+    - name: Check Connectivity
+      ping:
