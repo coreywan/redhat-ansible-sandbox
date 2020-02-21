@@ -12,3 +12,15 @@
     regexp: '^%wheel'
     line: '%wheel ALL=(ALL) NOPASSWD: ALL'
     validate: 'visudo -cf %s'
+
+- name: Configure Auto Login
+  ini_file:
+    path: /etc/gdm/custom.conf
+    section: daemon
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+  loop:
+    - option: AutomaticLoginEnable
+      value: "True"
+    - option: AutomaticLogin
+      value: student
