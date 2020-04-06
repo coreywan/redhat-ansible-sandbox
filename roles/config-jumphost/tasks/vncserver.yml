@@ -74,7 +74,7 @@
   file:
     path: /usr/local/share/backgrounds
     state: directory
-    mode: "0755"
+    mode: "0777"
 
 - name: Copy Desktop Background photo
   fetch:
@@ -85,5 +85,8 @@
   ini_file:
     path: /etc/dconf/db/local.d/00-background
     section: "org/gnome/desktop/background"
-    option: picture-uri
-    value: "file:///usr/local/share/backgrounds/background.jpg"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+  loop:
+    - option: picture-uri
+      value: "file:///usr/local/share/backgrounds/background.jpg"
