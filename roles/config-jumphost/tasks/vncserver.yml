@@ -50,3 +50,15 @@
   shell: |
     systemctl enable vncserver-{{ vnc_user }}@{{ vnc_display }}
   ignore_errors: true
+
+- name: Setup Automatic login
+  ini_file:
+    path: /etc/gdm/custom.conf
+    section: daemon
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+  loop:
+    - option: AutomaticLoginEnable
+      value: "true"
+    - option: AutomaticLogin
+      value: "{{ vnc_user }}"
