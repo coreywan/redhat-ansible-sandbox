@@ -62,3 +62,10 @@
       value: "true"
     - option: AutomaticLogin
       value: "{{ vnc_user }}"
+
+- name: Disable Screen Saver
+  ini_file:
+    path: /etc/dconf/db/local.d/00-screensaver
+    section: "org/gnome/desktop/screensaver"
+    option: lock-enabled
+    value: "false"
