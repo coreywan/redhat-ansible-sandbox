@@ -69,3 +69,21 @@
     section: "org/gnome/desktop/screensaver"
     option: lock-enabled
     value: "false"
+
+- name: Ensure backgrounds directory
+  file:
+    path: /usr/local/share/backgrounds
+    state: directory
+    mode: "0755"
+
+- name: Copy Desktop Background photo
+  fetch:
+    src: "{{ vnc_background_file }}"
+    dest: "/usr/local/share/backgrounds/background.jpg"
+
+- name: Configure Desktop Background
+  ini_file:
+    path: /etc/dconf/db/local.d/00-background
+    section: "org/gnome/desktop/background"
+    option: picture-uri
+    value: "file:///usr/local/share/backgrounds/background.jpg"
