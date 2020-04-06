@@ -1,3 +1,4 @@
 ---
 vnc_user: student
 vnc_display: ":1"
+vnc_background_file: "files/template_desktop_background.jpg"
