@@ -89,4 +89,6 @@
     value: "{{ item.value }}"
   loop:
     - option: picture-uri
-      value: "file:///usr/local/share/backgrounds/background.jpg"
+      value: "'file:///usr/local/share/backgrounds/background.jpg'"
+    - option: picture-options
+      value: "{{ vnc_background_picture_options }}"
