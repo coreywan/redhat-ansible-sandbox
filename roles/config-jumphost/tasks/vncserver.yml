@@ -75,11 +75,15 @@
     path: /usr/local/share/backgrounds
     state: directory
     mode: "0777"
+  notify:
+    - update dconf
 
 - name: Copy Desktop Background photo
   fetch:
     src: "{{ vnc_background_file }}"
     dest: "/usr/local/share/backgrounds/background.jpg"
+  notify:
+    - update dconf
 
 - name: Configure Desktop Background
   ini_file:
@@ -92,3 +96,21 @@
       value: "'file:///usr/local/share/backgrounds/background.jpg'"
     - option: picture-options
       value: "'{{ vnc_background_picture_options }}'"
+    - option: secondary-color
+      value: "'FFFFFF'"
+    - option: primary-color
+      value: "'000000'"
+  notify:
+    - update dconf
+
+- name: set background overrides
+  copy:
+    dest: /etc/dconf/db/local.d/locks/background
+    content: |
+      # Lock desktop background settings
+      /org/gnome/desktop/background/picture-uri
+      /org/gnome/desktop/background/picture-options
+      /org/gnome/desktop/background/primary-color
+      /org/gnome/desktop/background/secondary-color
+  notify:
+    - update dconf
