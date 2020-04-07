@@ -79,7 +79,7 @@
     - update dconf
 
 - name: Copy Desktop Background photo
-  fetch:
+  copy:
     src: "{{ vnc_background_file }}"
     dest: "/usr/local/share/backgrounds/background.jpg"
   notify:
